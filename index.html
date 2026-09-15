@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="HM3D-M3: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation">
+  <meta name="keywords" content="HM3D-M3, Benchmark, Multi-Agent, Multi-Modal, Multi-Object, Goal Navigation, EmbodiedAI">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HM3D-M&sup3;: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">HM3D-M&sup3;: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Authors</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block">Anonymous submission</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming soon)</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img id="teaser" height="100%" src="./static/images/teaser.jpg">
+      <h2 class="subtitle has-text-centered">
+        In <span class="dnerf">HM3D-M&sup3;</span>, a team of <i>K</i> agents starts at
+        distributed locations in a photorealistic indoor scene and must find an unordered set of
+        <i>M</i> object goals, each given as an open-vocabulary category name (&#127991;&#65039;),
+        an instance description (&#128289;), or an instance image (&#128248;) — all in one episode.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Rapid progress in AI agents and robotics makes it a matter of the near future that humans are served by a team of robots.
+            Such a team will receive several goals at once, each specified in whatever form is convenient for the human, such as a category name, a photo, or a spoken description.
+            Existing benchmarks study multi-agent, multi-modal, and multi-object goal navigation in <em>isolation</em>, and a benchmark that places all three in one episode is missing.
+            To fill this gap, we introduce HM3D-M&sup3;.
+          </p>
+          <p>
+            A team of <i>K</i> agents starts at distributed locations in a photorealistic indoor scene and must find an unordered set of <i>M</i> object goals, each given as an open-vocabulary category, an instance image, or an instance description.
+            HM3D-M&sup3; provides 1,000 validation episodes over 3,926 goals from 379 open-vocabulary categories, 100K training samples, and two team-level metrics, goal-level SR and makespan-normalized SPL.
+            We further contribute two baselines.
+            <b>HiGA</b> is a trained hierarchical goal assigner on top of a frozen open-vocabulary navigation policy, and <b>LaViRA-M&sup3;</b> is a training-free team of VLM agents with shared mapping and shared progress.
+            Adapted multi-robot and zero-shot methods reach 16 to 27% SR, while our baselines reach 38 to 41% with complementary strengths and orthogonal failure modes.
+            Furthermore, we deploy LaViRA-M&sup3; on a heterogeneous three-robot team.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Multi-Agent, Multi-Modal, and Multi-Object</h2>
+        <div class="content has-text-justified">
+          <b>Multi-agent</b>: a team of <i>K</i> &isin; {2, 3, 4} agents starts at distributed, jointly reachable locations and shares a map; a goal counts as found as soon as any team member finds it.
+          <b>Multi-object</b>: each episode carries <i>M</i> &isin; {3, 4, 5} unordered goals, all known at the start.
+          <b>Multi-modal</b>: every goal is individually specified as an object category (ON), an instance-level textual description (TN), or an instance image (IIN).
+        </div>
+        <img src="./static/images/dataset_view.jpg" alt="Dataset statistics"/>
+        <div class="content has-text-justified">
+          <b>Benchmark statistics</b>: 1,000 validation episodes spanning 3,926 goals from 379 open-vocabulary categories, with balanced episode occupancy over <i>K</i> and <i>M</i> (a), balanced goal counts across the three modalities (b), goal spread that correlates with the shortest team tour (r&nbsp;=&nbsp;0.71) (c), and diverse instance descriptions (d).
+          100K training samples are provided for learned methods.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Comparison with Related Benchmarks</h2>
+        <div class="content has-text-centered">
+          HM3D-M&sup3; is the first benchmark to place multi-agent, multi-modal, and multi-object goal navigation in one episode.
+        </div>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Benchmark</th><th>Venue</th><th>Multi-agent</th><th>Multi-goal</th><th>Unordered goals</th>
+              <th>Open vocab</th><th>ON</th><th>TN</th><th>IIN</th><th>Modalities in one episode</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Habitat ObjectNav</td><td>arXiv'20</td><td>&#10007;</td><td>&#10007;</td><td>—</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
+            <tr><td>RoboTHOR</td><td>CVPR'20</td><td>&#10007;</td><td>&#10007;</td><td>—</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
+            <tr><td>MultiON</td><td>NeurIPS'20</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
+            <tr><td>CollaVN</td><td>NeurIPS'21</td><td>&#10003;</td><td>&#10007;</td><td>—</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
+            <tr><td>InstanceImageNav</td><td>ICCV'23</td><td>&#10007;</td><td>&#10007;</td><td>—</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td></tr>
+            <tr><td>HM3D-OVON</td><td>IROS'24</td><td>&#10007;</td><td>&#10007;</td><td>—</td><td>&#10003;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
+            <tr><td>GOAT-Bench</td><td>CVPR'24</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td></tr>
+            <tr><td>Habitat-MAS</td><td>ICLR'25</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
+            <tr><td>HM3D-MFMON</td><td>arXiv'26</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
+            <tr class="is-selected"><td><b>HM3D-M&sup3; (ours)</b></td><td>—</td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Baselines</h2>
+        <div class="content has-text-justified">
+          We contribute two baselines representing two paradigms:
+          1) <b>HiGA</b>, a trained hierarchical goal assigner — a Set-Transformer that predicts per-goal heat-maps and assigns goals to agents — on top of a frozen open-vocabulary navigation policy; and
+          2) <b>LaViRA-M&sup3;</b>, a training-free team of VLM agents that translate goals into Language, Vision, and Robot actions with shared top-down mapping and shared progress estimation.
+        </div>
+        <img src="./static/images/pipeline-higa.jpg" alt="HiGA pipeline" style="border: 0.5px solid rgb(189, 189, 189);"/>
+        <div class="content has-text-centered"><b>HiGA</b>: trained hierarchical goal assignment over a frozen open-vocabulary navigation policy.</div>
+        <img src="./static/images/pipeline-lavira.jpg" alt="LaViRA-M3 pipeline" style="border: 0.5px solid rgb(189, 189, 189);"/>
+        <div class="content has-text-centered"><b>LaViRA-M&sup3;</b>: training-free team of VLM agents with shared mapping and shared progress.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-centered">
+          Validation split, 1,000 episodes. SR = mean goals found per episode; SPL = SR &times; d*<sub>team</sub> / max(d*<sub>team</sub>, makespan). ON / TN / IIN are per-modality goal found rates.
+        </div>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+          <thead>
+            <tr><th>Method</th><th>SR &uarr;</th><th>SPL &uarr;</th><th>ON</th><th>TN</th><th>IIN</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>VLFM</td><td>16.1</td><td>11.8</td><td>24.5</td><td>17.7</td><td>5.9</td></tr>
+            <tr><td>EGO-Swarm</td><td>23.7</td><td>10.7</td><td>35.5</td><td>28.0</td><td>7.5</td></tr>
+            <tr><td>Co-NavGPT2</td><td>24.5</td><td>9.4</td><td>37.3</td><td>28.8</td><td>7.6</td></tr>
+            <tr><td>DM&sup3;-Nav</td><td>26.6</td><td>9.9</td><td>35.9</td><td>30.4</td><td>14.2</td></tr>
+            <tr><td><b>HiGA (ours)</b></td><td>37.9</td><td>7.1</td><td><b>53.0</b></td><td>40.2</td><td>18.8</td></tr>
+            <tr><td><b>LaViRA-M&sup3; (ours)</b></td><td><b>41.0</b></td><td><b>20.3</b></td><td>38.6</td><td><b>40.9</b></td><td><b>41.4</b></td></tr>
+          </tbody>
+        </table>
+        <div class="content has-text-justified">
+          Adapted multi-robot and zero-shot methods reach only 16&ndash;27% SR, while our two baselines reach 38&ndash;41% with complementary strengths: HiGA is strongest on category goals (ON), and LaViRA-M&sup3; dominates on instance-level goals (TN / IIN) and efficiency (SPL).
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Ablation Study</h2>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+          <thead>
+            <tr><th>Variant</th><th>SR &uarr;</th><th>SPL &uarr;</th><th>ON</th><th>TN</th><th>IIN</th></tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="6"><b>HiGA</b></td></tr>
+            <tr><td>random assignment</td><td>16.8</td><td>2.7</td><td>22.7</td><td>17.3</td><td>8.3</td></tr>
+            <tr><td>rule-based assignment</td><td>21.6</td><td>4.3</td><td>29.5</td><td>19.7</td><td>11.3</td></tr>
+            <tr><td>HiGA-BC</td><td>34.1</td><td>6.0</td><td>44.7</td><td><b>41.7</b></td><td>14.3</td></tr>
+            <tr><td>HiGA-DAgger</td><td><b>37.9</b></td><td><b>7.1</b></td><td><b>53.0</b></td><td>40.2</td><td><b>18.8</b></td></tr>
+            <tr><td colspan="6"><b>LaViRA-M&sup3;</b></td></tr>
+            <tr><td>Full</td><td><b>41.0</b></td><td>20.3</td><td><b>38.6</b></td><td><b>40.9</b></td><td><b>41.4</b></td></tr>
+            <tr><td>w/o shared goals (SG)</td><td>33.2</td><td><b>21.6</b></td><td><b>38.6</b></td><td>26.8</td><td>33.8</td></tr>
+            <tr><td>w/o shared progress (SP)</td><td>37.3</td><td>17.2</td><td>35.6</td><td>36.2</td><td>39.8</td></tr>
+            <tr><td>w/o SG+SP</td><td>29.3</td><td>18.8</td><td>30.3</td><td>26.0</td><td>30.1</td></tr>
+          </tbody>
+        </table>
+        <div class="content has-text-justified">
+          Learned assignment (HiGA-DAgger) clearly outperforms random and rule-based assignment; for LaViRA-M&sup3;, sharing both goals and progress across the team is critical, especially for instance-level goals.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">How does performance scale with team size and goal count?</h2>
+        <img src="./static/images/km_scaling.jpg" alt="K and M scaling"/>
+        <div class="content has-text-centered">
+          <b>K/M scaling</b>: success rate grows steadily as more agents join the team (a), while more goals per episode make the task harder (b) — team-level coordination, not per-agent skill, is the bottleneck.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Where do agents fail?</h2>
+        <img src="./static/images/vis_fail.jpg" alt="Episode visualization and failure attribution"/>
+        <div class="content has-text-justified">
+          <b>Failure attribution</b>: per-goal Sankey analysis shows the two baselines fail in orthogonal ways — LaViRA-M&sup3; mostly loses goals at claim time (pose miss / verifier rejection), while HiGA more often never gets near the goal or fails to detect it — suggesting the two paradigms are complementary.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Real-World Deployment</h2>
+        <div class="content has-text-justified">
+          We deploy LaViRA-M&sup3; on a heterogeneous robot team: an Agilex Cobot Magic mobile manipulator and Unitree Go1 quadrupeds, streaming RGB-D observations over Wi-Fi to a local workstation that runs the VLM.
+        </div>
+        <img src="./static/images/real_setup_diagram.jpg" alt="Hardware setup diagram" style="border: 0.5px solid rgb(189, 189, 189);"/>
+        <img src="./static/images/real_setup_robots.jpg" alt="Robot team" style="border: 0.5px solid rgb(189, 189, 189);"/>
+        <div class="content has-text-justified">
+          In the mission <em>"find the blue robot dog in the room"</em>, the team splits up and a Go1 finds the target.
+        </div>
+        <div class="columns is-centered">
+          <div class="column"><img src="./static/images/seq_13.jpg" alt="Sequence frame 1"/></div>
+          <div class="column"><img src="./static/images/seq_37.jpg" alt="Sequence frame 2"/></div>
+          <div class="column"><img src="./static/images/seq_45.jpg" alt="Sequence frame 3"/></div>
+          <div class="column"><img src="./static/images/seq_53.jpg" alt="Sequence frame 4"/></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{hm3dm3,
+      title={HM3D-M$^3$: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation},
+      author={Anonymous},
+      year={2026}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
