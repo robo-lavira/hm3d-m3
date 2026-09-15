@@ -20,6 +20,14 @@
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
+  <style>
+    .cmark { color: #5a9e7d; font-weight: bold; }
+    .xmark { color: #c27373; }
+    .nmark { color: #9aa0a6; }
+    .ours-row td { background-color: #dce9f5 !important; }
+    .ours-row .cmark { color: #3d7a5c; }
+  </style>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
@@ -61,7 +69,7 @@
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code (Coming soon)</span>
+                  <span>Code</span>
                   </a>
               </span>
             </div>
@@ -150,16 +158,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Habitat ObjectNav</td><td>arXiv'20</td><td>&#10007;</td><td>&#10007;</td><td>—</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
-            <tr><td>RoboTHOR</td><td>CVPR'20</td><td>&#10007;</td><td>&#10007;</td><td>—</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
-            <tr><td>MultiON</td><td>NeurIPS'20</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
-            <tr><td>CollaVN</td><td>NeurIPS'21</td><td>&#10003;</td><td>&#10007;</td><td>—</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
-            <tr><td>InstanceImageNav</td><td>ICCV'23</td><td>&#10007;</td><td>&#10007;</td><td>—</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td></tr>
-            <tr><td>HM3D-OVON</td><td>IROS'24</td><td>&#10007;</td><td>&#10007;</td><td>—</td><td>&#10003;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
-            <tr><td>GOAT-Bench</td><td>CVPR'24</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td></tr>
-            <tr><td>Habitat-MAS</td><td>ICLR'25</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
-            <tr><td>HM3D-MFMON</td><td>arXiv'26</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10003;</td><td>&#10007;</td><td>&#10007;</td><td>&#10007;</td></tr>
-            <tr class="is-selected"><td><b>HM3D-M&sup3; (ours)</b></td><td>—</td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td><td><b>&#10003;</b></td></tr>
+            <tr><td>Habitat ObjectNav</td><td>arXiv'20</td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="nmark">—</span></td><td><span class="xmark">&#10007;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td></tr>
+            <tr><td>RoboTHOR</td><td>CVPR'20</td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="nmark">—</span></td><td><span class="xmark">&#10007;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td></tr>
+            <tr><td>MultiON</td><td>NeurIPS'20</td><td><span class="xmark">&#10007;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td></tr>
+            <tr><td>CollaVN</td><td>NeurIPS'21</td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="nmark">—</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td></tr>
+            <tr><td>InstanceImageNav</td><td>ICCV'23</td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="nmark">—</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td></tr>
+            <tr><td>HM3D-OVON</td><td>IROS'24</td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="nmark">—</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td></tr>
+            <tr><td>GOAT-Bench</td><td>CVPR'24</td><td><span class="xmark">&#10007;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td></tr>
+            <tr><td>Habitat-MAS</td><td>ICLR'25</td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td></tr>
+            <tr><td>HM3D-MFMON</td><td>arXiv'26</td><td><span class="xmark">&#10007;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td><td><span class="xmark">&#10007;</span></td></tr>
+            <tr class="ours-row"><td><b>HM3D-M&sup3; (ours)</b></td><td>—</td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td><td><span class="cmark">&#10003;</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -219,50 +227,6 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Ablation Study</h2>
-        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-          <thead>
-            <tr><th>Variant</th><th>SR &uarr;</th><th>SPL &uarr;</th><th>ON</th><th>TN</th><th>IIN</th></tr>
-          </thead>
-          <tbody>
-            <tr><td colspan="6"><b>HiGA</b></td></tr>
-            <tr><td>random assignment</td><td>16.8</td><td>2.7</td><td>22.7</td><td>17.3</td><td>8.3</td></tr>
-            <tr><td>rule-based assignment</td><td>21.6</td><td>4.3</td><td>29.5</td><td>19.7</td><td>11.3</td></tr>
-            <tr><td>HiGA-BC</td><td>34.1</td><td>6.0</td><td>44.7</td><td><b>41.7</b></td><td>14.3</td></tr>
-            <tr><td>HiGA-DAgger</td><td><b>37.9</b></td><td><b>7.1</b></td><td><b>53.0</b></td><td>40.2</td><td><b>18.8</b></td></tr>
-            <tr><td colspan="6"><b>LaViRA-M&sup3;</b></td></tr>
-            <tr><td>Full</td><td><b>41.0</b></td><td>20.3</td><td><b>38.6</b></td><td><b>40.9</b></td><td><b>41.4</b></td></tr>
-            <tr><td>w/o shared goals (SG)</td><td>33.2</td><td><b>21.6</b></td><td><b>38.6</b></td><td>26.8</td><td>33.8</td></tr>
-            <tr><td>w/o shared progress (SP)</td><td>37.3</td><td>17.2</td><td>35.6</td><td>36.2</td><td>39.8</td></tr>
-            <tr><td>w/o SG+SP</td><td>29.3</td><td>18.8</td><td>30.3</td><td>26.0</td><td>30.1</td></tr>
-          </tbody>
-        </table>
-        <div class="content has-text-justified">
-          Learned assignment (HiGA-DAgger) clearly outperforms random and rule-based assignment; for LaViRA-M&sup3;, sharing both goals and progress across the team is critical, especially for instance-level goals.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3">How does performance scale with team size and goal count?</h2>
-        <img src="./static/images/km_scaling.jpg" alt="K and M scaling"/>
-        <div class="content has-text-centered">
-          <b>K/M scaling</b>: success rate grows steadily as more agents join the team (a), while more goals per episode make the task harder (b) — team-level coordination, not per-agent skill, is the bottleneck.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
         <h2 class="title is-3">Where do agents fail?</h2>
         <img src="./static/images/vis_fail.jpg" alt="Episode visualization and failure attribution"/>
         <div class="content has-text-justified">
@@ -282,7 +246,6 @@
           We deploy LaViRA-M&sup3; on a heterogeneous robot team: an Agilex Cobot Magic mobile manipulator and Unitree Go1 quadrupeds, streaming RGB-D observations over Wi-Fi to a local workstation that runs the VLM.
         </div>
         <img src="./static/images/real_setup_diagram.jpg" alt="Hardware setup diagram" style="border: 0.5px solid rgb(189, 189, 189);"/>
-        <img src="./static/images/real_setup_robots.jpg" alt="Robot team" style="border: 0.5px solid rgb(189, 189, 189);"/>
         <div class="content has-text-justified">
           In the mission <em>"find the blue robot dog in the room"</em>, the team splits up and a Go1 finds the target.
         </div>
@@ -294,17 +257,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@misc{hm3dm3,
-      title={HM3D-M$^3$: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation},
-      author={Anonymous},
-      year={2026}
-}</code></pre>
   </div>
 </section>
 
