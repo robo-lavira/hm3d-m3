@@ -126,26 +126,6 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Multi-Agent, Multi-Modal, and Multi-Object</h2>
-        <div class="content has-text-justified">
-          <b>Multi-agent</b>: a team of <i>K</i> &isin; {2, 3, 4} agents starts at distributed, jointly reachable locations and shares a map; a goal counts as found as soon as any team member finds it.
-          <b>Multi-object</b>: each episode carries <i>M</i> &isin; {3, 4, 5} unordered goals, all known at the start.
-          <b>Multi-modal</b>: every goal is individually specified as an object category (ON), an instance-level textual description (TN), or an instance image (IIN).
-        </div>
-        <img src="./static/images/dataset_view.jpg" alt="Dataset statistics"/>
-        <div class="content has-text-justified">
-          <b>Benchmark statistics</b>: 1,000 validation episodes spanning 3,926 goals from 379 open-vocabulary categories, with balanced episode occupancy over <i>K</i> and <i>M</i> (a), balanced goal counts across the three modalities (b), goal spread that correlates with the shortest team tour (r&nbsp;=&nbsp;0.71) (c), and diverse instance descriptions (d).
-          100K training samples are provided for learned methods.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
         <h2 class="title is-3">Comparison with Related Benchmarks</h2>
         <div class="content has-text-centered">
           HM3D-M&sup3; is the first benchmark to place multi-agent, multi-modal, and multi-object goal navigation in one episode.
@@ -179,15 +159,35 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
+        <h2 class="title is-3">Multi-Agent, Multi-Modal, and Multi-Object</h2>
+        <div class="content has-text-justified">
+          <b>Multi-agent</b>: a team of <i>K</i> &isin; {2, 3, 4} agents starts at distributed, jointly reachable locations and shares a map; a goal counts as found as soon as any team member finds it.
+          <b>Multi-object</b>: each episode carries <i>M</i> &isin; {3, 4, 5} unordered goals, all known at the start.
+          <b>Multi-modal</b>: every goal is individually specified as an object category (ON), an instance-level textual description (TN), or an instance image (IIN).
+        </div>
+        <img src="./static/images/dataset_view.jpg" alt="Dataset statistics"/>
+        <div class="content has-text-justified">
+          <b>Benchmark statistics</b>: 1,000 validation episodes spanning 3,926 goals from 379 open-vocabulary categories, with balanced episode occupancy over <i>K</i> and <i>M</i> (a), balanced goal counts across the three modalities (b), goal spread that correlates with the shortest team tour (r&nbsp;=&nbsp;0.71) (c), and diverse instance descriptions (d).
+          100K training samples are provided for learned methods.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
         <h2 class="title is-3">Baselines</h2>
         <div class="content has-text-justified">
           We contribute two baselines representing two paradigms:
           1) <b>HiGA</b>, a trained hierarchical goal assigner — a Set-Transformer that predicts per-goal heat-maps and assigns goals to agents — on top of a frozen open-vocabulary navigation policy; and
           2) <b>LaViRA-M&sup3;</b>, a training-free team of VLM agents that translate goals into Language, Vision, and Robot actions with shared top-down mapping and shared progress estimation.
         </div>
-        <img src="./static/images/pipeline-higa.jpg" alt="HiGA pipeline" style="border: 0.5px solid rgb(189, 189, 189);"/>
+        <img src="./static/images/pipeline-higa.jpg" alt="HiGA pipeline"/>
         <div class="content has-text-centered"><b>HiGA</b>: trained hierarchical goal assignment over a frozen open-vocabulary navigation policy.</div>
-        <img src="./static/images/pipeline-lavira.jpg" alt="LaViRA-M3 pipeline" style="border: 0.5px solid rgb(189, 189, 189);"/>
+        <img src="./static/images/pipeline-lavira.jpg" alt="LaViRA-M3 pipeline"/>
         <div class="content has-text-centered"><b>LaViRA-M&sup3;</b>: training-free team of VLM agents with shared mapping and shared progress.</div>
       </div>
     </div>
@@ -200,7 +200,7 @@
       <div class="column">
         <h2 class="title is-3">Results</h2>
         <div class="content has-text-centered">
-          Validation split, 1,000 episodes. SR = mean goals found per episode; SPL = SR &times; d*<sub>team</sub> / max(d*<sub>team</sub>, makespan). ON / TN / IIN are per-modality goal found rates.
+          Validation split, 1,000 episodes. ON / TN / IIN are per-modality goal found rates.
         </div>
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
           <thead>
@@ -227,7 +227,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Where do agents fail?</h2>
+        <h2 class="title is-3">Qualitative and failure analysis</h2>
         <img src="./static/images/vis_fail.jpg" alt="Episode visualization and failure attribution"/>
         <div class="content has-text-justified">
           <b>Failure attribution</b>: per-goal Sankey analysis shows the two baselines fail in orthogonal ways — LaViRA-M&sup3; mostly loses goals at claim time (pose miss / verifier rejection), while HiGA more often never gets near the goal or fails to detect it — suggesting the two paradigms are complementary.
@@ -245,7 +245,7 @@
         <div class="content has-text-justified">
           We deploy LaViRA-M&sup3; on a heterogeneous robot team: an Agilex Cobot Magic mobile manipulator and Unitree Go1 quadrupeds, streaming RGB-D observations over Wi-Fi to a local workstation that runs the VLM.
         </div>
-        <img src="./static/images/real_setup_diagram.jpg" alt="Hardware setup diagram" style="border: 0.5px solid rgb(189, 189, 189);"/>
+        <img src="./static/images/real_setup_diagram.jpg" alt="Hardware setup diagram"/>
         <div class="content has-text-justified">
           In the mission <em>"find the blue robot dog in the room"</em>, the team splits up and a Go1 finds the target.
         </div>
