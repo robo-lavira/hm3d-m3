@@ -227,6 +227,43 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
+        <h2 class="title is-3">Ablation Study</h2>
+        <div style="display:flex;gap:28px;align-items:center;justify-content:center;flex-wrap:wrap">
+          <div style="flex:1 1 46%;min-width:340px">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+              <thead>
+                <tr><th>Variant</th><th>SR &uarr;</th><th>SPL &uarr;</th><th>ON</th><th>TN</th><th>IIN</th></tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="6" style="text-align:center"><b>HiGA</b></td></tr>
+                <tr><td>random</td><td>16.8</td><td>2.7</td><td>22.7</td><td>17.3</td><td>8.3</td></tr>
+                <tr><td>rule-based</td><td>21.6</td><td>4.3</td><td>29.5</td><td>19.7</td><td>11.3</td></tr>
+                <tr><td>HiGA-BC</td><td>34.1</td><td>6.0</td><td>44.7</td><td><b>41.7</b></td><td>14.3</td></tr>
+                <tr><td>HiGA-DAgger</td><td><b>37.9</b></td><td><b>7.1</b></td><td><b>53.0</b></td><td>40.2</td><td><b>18.8</b></td></tr>
+                <tr><td colspan="6" style="text-align:center"><b>LaViRA-M&sup3;</b></td></tr>
+                <tr><td>Full</td><td><b>41.0</b></td><td>20.3</td><td><b>38.6</b></td><td><b>40.9</b></td><td><b>41.4</b></td></tr>
+                <tr><td>w/o SG</td><td>33.2</td><td><b>21.6</b></td><td><b>38.6</b></td><td>26.8</td><td>33.8</td></tr>
+                <tr><td>w/o SP</td><td>37.3</td><td>17.2</td><td>35.6</td><td>36.2</td><td>39.8</td></tr>
+                <tr><td>w/o SG+SP</td><td>29.3</td><td>18.8</td><td>30.3</td><td>26.0</td><td>30.1</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="flex:1 1 46%;min-width:340px">
+            <img src="./static/images/km_scaling.jpg" alt="K/M scaling: SR and SPL versus number of agents K (M=3) and number of goals M (K=3)"/>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          Left: ablations of HiGA assignment variants and LaViRA-M&sup3; components (SG / SP), best per block in bold. Right: SR grows with team size <i>K</i> (M&nbsp;=&nbsp;3) and degrades as goal count <i>M</i> increases (K&nbsp;=&nbsp;3), while SPL stays stable in both.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
         <h2 class="title is-3">Qualitative and failure analysis</h2>
         <img src="./static/images/vis_fail.jpg" alt="Episode visualization and failure attribution"/>
         <div class="content has-text-justified">
