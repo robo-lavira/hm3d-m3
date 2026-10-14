@@ -21,6 +21,27 @@
     .nmark { color: #9aa0a6; }
     .ours-row td { background-color: #dce9f5 !important; }
     .ours-row .cmark { color: #3d7a5c; }
+
+    /* Left-side table of contents (wide screens only). */
+    html { scroll-behavior: smooth; }
+    section.section[id] { scroll-margin-top: 1.5rem; }
+    .page-toc {
+      position: fixed; top: 50%; left: 1.5rem; transform: translateY(-50%);
+      width: 11.5rem; z-index: 20; display: none;
+      font-family: 'Google Sans', 'Noto Sans', sans-serif; font-size: 0.9rem; line-height: 1.35;
+    }
+    .page-toc .toc-title {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #7a7a7a; margin-bottom: 0.5rem; padding-left: 0.75rem;
+    }
+    .page-toc ul { list-style: none; margin: 0; padding: 0; border-left: 2px solid #ededed; }
+    .page-toc li a {
+      display: block; padding: 0.3rem 0.75rem; margin-left: -2px; border-left: 2px solid transparent;
+      color: #4a4a4a; transition: color 0.15s, border-color 0.15s;
+    }
+    .page-toc li a:hover { color: #3273dc; }
+    .page-toc li a.is-active { color: #3273dc; border-left-color: #3273dc; font-weight: 600; }
+    @media screen and (min-width: 1400px) { .page-toc { display: block; } }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -28,6 +49,18 @@
   <script src="./static/js/index.js"></script>
 </head>
 <body>
+<nav class="page-toc" aria-label="Contents">
+  <div class="toc-title">Contents</div>
+  <ul>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#comparison">Related Benchmarks</a></li>
+    <li><a href="#benchmark">Benchmark</a></li>
+    <li><a href="#baselines">Baselines</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#qualitative">Qualitative Analysis</a></li>
+    <li><a href="#real-world">Real-World Deployment</a></li>
+  </ul>
+</nav>
 
 
 <section class="hero">
@@ -125,7 +158,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="abstract">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
@@ -153,7 +186,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="comparison">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
@@ -186,7 +219,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="benchmark">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
@@ -203,7 +236,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="baselines">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
@@ -220,7 +253,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="results">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
@@ -249,7 +282,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="qualitative">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
@@ -267,7 +300,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="real-world">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
@@ -310,5 +343,26 @@
   </div>
 </footer>
 
+<script>
+  // Highlight the TOC entry of the section currently in view.
+  (function () {
+    var links = document.querySelectorAll('.page-toc a');
+    if (!('IntersectionObserver' in window) || !links.length) return;
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('is-active'); });
+        var a = byId[e.target.id];
+        if (a) a.classList.add('is-active');
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  })();
+</script>
 </body>
 </html>
