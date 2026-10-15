@@ -13,6 +13,7 @@
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
   <link rel="icon" href="./static/images/favicon.svg">
   <!-- Bottom-right AI assistant (public embed, same as the authors' homepage; no token). -->
   <link rel="stylesheet" href="https://agent.hongyuding.site/frontend/tutor.css?v=20260726-ui12">
@@ -95,6 +96,34 @@
   <script>
     window.HOMEPAGE_AGENT_ENDPOINT = window.HOMEPAGE_AGENT_ENDPOINT || "https://agent.hongyuding.site/chat";
     window.HOMEPAGE_AGENT_HEALTH = window.HOMEPAGE_AGENT_HEALTH || "https://agent.hongyuding.site/health";
+    window.HOMEPAGE_AGENT_COPY = {
+      en: { empty: "Hi, I'm the AI assistant on the HM3D-M\u00b3 project page. Ask about the benchmark, the data, running the baselines or citing the paper." },
+      zh: { empty: "你好，我是 HM3D-M\u00b3 项目页上的 AI 助理。可以问我 benchmark、数据下载、如何运行 baseline 或如何引用论文。" }
+    };
+    window.HOMEPAGE_AGENT_SUGGESTIONS = {
+      en: [
+        "What is HM3D-M\u00b3 and what makes it different?",
+        "How do I download the Val-1000 / Mini-100 episodes and IIN images?",
+        "How do I run LaViRA-M\u00b3 and the baselines?",
+        "Where are the paper, code and data? How do I cite it?"
+      ],
+      zh: [
+        "HM3D-M\u00b3 是什么？和已有 benchmark 有什么不同？",
+        "怎么下载 Val-1000 / Mini-100 episode 和 IIN 图像？",
+        "怎么运行 LaViRA-M\u00b3 和 baseline？",
+        "论文、代码和数据在哪里？怎么引用？"
+      ]
+    };
+    window.HOMEPAGE_AGENT_CONTEXT = [
+      "The visitor is on the HM3D-M3 project page (https://robo-lavira.github.io/hm3d-m3/). Answer about HM3D-M3 from this brief; do not confuse it with the earlier single-agent LaViRA paper.",
+      "HM3D-M3: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation. Authors: Hongyu Ding*, Kanyu Xu*, Mingjia Chen, Zixuan Chen, Jieqi Shi\u2020, Jing Huo\u2020, Yifan Zhang\u2020, Yang Gao (Nanjing University; Nanjing Normal University; UCAS). arXiv: https://arxiv.org/abs/2610.20121 (cs.RO, 2026).",
+      "Task: a team of K agents starts at distributed locations in a photorealistic HM3D scene and searches for an unordered set of M object goals; each goal is an open-vocabulary category (ON), an instance description (TN) or an instance image (IIN). A goal counts for the team whichever agent finds it. Metrics: goal-level SR (mean fraction of goals found) and makespan-normalized SPL, plus per-modality found rates ON / TN / IIN.",
+      "Data: 1,000 validation episodes (Val-1000) over 3,926 goals from 379 categories, a 100-episode Mini-100 smoke split, and 100K observation-assignment training samples on disjoint scenes. Episodes and IIN goal images: GitHub Release v1.0.0 at https://github.com/NJU-R-L-Group-Embodied-Lab/hm3d-m3-code/releases/tag/v1.0.0 (checksummed). Training data: Hugging Face dataset https://huggingface.co/datasets/skyhyding/HM3D-M3 (gated: accept the terms and log in). HM3D v0.2 scenes are not redistributed; get them from Matterport/Habitat under their license.",
+      "Code: https://github.com/NJU-R-L-Group-Embodied-Lab/hm3d-m3-code. sim-code/ is the simulation benchmark; real-world-code/ is the real-robot LaViRA-M3. Shortest path: sim-code/AGENT_SETUP.md; details in sim-code/HOW_TO_RUN.md. Steps: git clone the repo; cd sim-code; cp .env.example .env and set LLM_API_KEY (OpenAI-compatible endpoint, default DashScope qwen3.5-27b), DATA_ROOT, MODEL_ROOT; docker compose -f docker/compose.yaml --env-file .env build; docker compose -f docker/compose.yaml --env-file .env up -d m3; bash download_data.sh --data-root <DATA_ROOT>; place HM3D v0.2 val scenes under <DATA_ROOT>/scene_datasets/hm3d-1.0/hm3d_v0.2/. Inside the m3 container: bash scripts/run_selftests.sh; bash scripts/mini100/lavira.sh (smoke test); bash scripts/main_table/lavira.sh (main-table LaViRA-M3 on Val-1000). Adapted baselines: bash scripts/main_table/od_baselines.sh after the OWL sidecar and model weights (HOW_TO_RUN.md sections 4 and 7). Needs Docker with the NVIDIA runtime and a GPU; set GPUS_CSV to use several GPUs.",
+      "Results: adapted multi-robot and zero-shot methods reach 16-27% SR; the paper's two baselines (HiGA, a trained hierarchical goal assigner, and LaViRA-M3, a training-free team of VLM agents with shared mapping and progress analysis) reach 38-41% SR with complementary strengths. LaViRA-M3 is also deployed on a heterogeneous three-robot team.",
+      "License: code CC BY-NC-SA 4.0; benchmark data CC BY-NC (see LICENSE in the repo).",
+      "BibTeX: @misc{hm3dm3, title = {HM3D-M$^3$: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation}, author = {Ding, Hongyu and Xu, Kanyu and Chen, Mingjia and Chen, Zixuan and Shi, Jieqi and Huo, Jing and Zhang, Yifan and Gao, Yang}, year = {2026}, eprint = {2610.20121}, archivePrefix = {arXiv}, primaryClass = {cs.RO}, url = {https://arxiv.org/abs/2610.20121}}"
+    ].join("\n");
   </script>
   <script src="https://agent.hongyuding.site/frontend/tutor.js?v=20260726-ui12" defer></script>
 </head>
@@ -135,9 +164,9 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- arXiv Link: enable once the arXiv ID is known (also add the academicons stylesheet for the ai-arxiv icon).
+              <!-- arXiv Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank"
+                <a href="https://arxiv.org/abs/2610.20121" target="_blank" rel="noopener noreferrer"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -145,7 +174,6 @@
                   <span>arXiv</span>
                 </a>
               </span>
-              -->
               <!-- PDF Link. -->
               <span class="link-block">
                 <a href="./static/paper.pdf"
