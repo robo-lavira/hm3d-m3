@@ -149,6 +149,7 @@
     <li><a href="#results">Results</a></li>
     <li><a href="#qualitative">Qualitative Analysis</a></li>
     <li><a href="#real-world">Real-World Deployment</a></li>
+    <li><a href="#BibTeX">BibTeX</a></li>
   </ol>
 </nav>
 
@@ -236,6 +237,9 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
+      <video id="real-world-mashup" controls preload="none" playsinline poster="./static/images/real-world-demo1-cover.jpg" style="width:100%;margin-bottom:1.5rem" aria-label="Real-world demos of LaViRA-M3 on three heterogeneous robots">
+        <source src="./static/videos/real-world-mashup.mp4" type="video/mp4"/>
+      </video>
       <img id="teaser" src="./static/images/teaser.jpg" width="1600" height="922" style="width:100%;height:auto" fetchpriority="high" alt="HM3D-M3 teaser: a team of robots searches a house for goals given as a category, an image, or a text description">
       <h2 class="subtitle has-text-centered">
         In <span class="dnerf">HM3D-M&sup3;</span>, a team of agents searches a photorealistic scene
@@ -393,30 +397,43 @@
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">Real-World Deployment</h2>
+        <img src="./static/images/real-world-paper.jpg" alt="Real-world deployment: the three robots, a three-goal run with first-person views, and the shared map growing over time" width="2600" height="964" loading="lazy" style="width:100%">
         <div class="content has-text-justified">
-          We deploy LaViRA-M&sup3; on three heterogeneous robots in an office — an Agilex Cobot Magic, a Unitree Go1, and a Unitree Go2.
+          We deploy LaViRA-M&sup3; on three heterogeneous robots in an office: an Agilex Cobot Magic, a Unitree Go1, and a Unitree Go2.
           The robots exchange the shared map as voxel records over Wi-Fi, along with the goal board and progress analysis, through the same channels as in simulation.
-        </div>
-        <video controls preload="none" playsinline poster="./static/images/real-world-demo1-cover.jpg" style="width:100%">
-          <source src="./static/videos/real-world-demo1-v2.mp4" type="video/mp4"/>
-        </video>
-        <div class="content has-text-centered">Real-World Demo 1</div>
-        <video controls preload="none" playsinline poster="./static/images/real-world-demo2-cover.jpg" style="width:100%">
-          <source src="./static/videos/real-world-demo2-v2.mp4" type="video/mp4"/>
-        </video>
-        <div class="content has-text-centered">Real-World Demo 2</div>
-        <img src="./static/images/real-world-paper.jpg" alt="Real-world deployment figure from the paper: the three robots, a three-goal run with first-person views, and the shared map growing over time" width="2600" height="964" loading="lazy" style="width:100%; margin-top:1.5rem">
-        <div class="content has-text-justified is-size-6">
-          <b>Real-world deployment (paper figure).</b> Left, the three platforms (an Agilex Cobot Magic, a Unitree Go1, and a Unitree Go2) exchanging the shared map as voxel records.
-          Center, a run with three goals (an image of a yellow suitcase, the category &ldquo;printer&rdquo;, and the description &ldquo;green chair besides the coffee bar&rdquo;) with first-person views at t<sub>0</sub> to t<sub>3</sub>, ending when each robot declares its goal found.
-          Right, the shared map growing over time, colored by robot, with regions mapped by more than one robot in pink. The video below is the full run shown in this figure.
+          The figure shows a run with three goals, an image of a yellow suitcase, the category &ldquo;printer&rdquo;, and the description &ldquo;green chair besides the coffee bar&rdquo;,
+          with first-person views from t<sub>0</sub> to t<sub>3</sub> and the shared map growing over time, colored by robot and pink where more than one robot mapped.
+          Real-World Demo 1 is the full video of this run.
         </div>
         <video controls preload="none" playsinline poster="./static/images/real-world-scene1-cover.jpg" style="width:100%">
           <source src="./static/videos/real-world-scene1.mp4" type="video/mp4"/>
         </video>
-        <div class="content has-text-centered">Real-World Scene 1 (the run in the paper figure)</div>
+        <div class="content has-text-centered">Real-World Demo 1</div>
+        <video controls preload="none" playsinline poster="./static/images/real-world-demo1-cover.jpg" style="width:100%">
+          <source src="./static/videos/real-world-demo1-v2.mp4" type="video/mp4"/>
+        </video>
+        <div class="content has-text-centered">Real-World Demo 2</div>
+        <video controls preload="none" playsinline poster="./static/images/real-world-demo2-cover.jpg" style="width:100%">
+          <source src="./static/videos/real-world-demo2-v2.mp4" type="video/mp4"/>
+        </video>
+        <div class="content has-text-centered">Real-World Demo 3</div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{hm3dm3,
+  title         = {HM3D-M$^3$: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation},
+  author        = {Ding, Hongyu and Xu, Kanyu and Chen, Mingjia and Chen, Zixuan and Shi, Jieqi and Huo, Jing and Zhang, Yifan and Gao, Yang},
+  year          = {2026},
+  eprint        = {2610.20121},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2610.20121}
+}</code></pre>
   </div>
 </section>
 
