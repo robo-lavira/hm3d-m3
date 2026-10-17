@@ -126,7 +126,7 @@
     };
     window.HOMEPAGE_AGENT_CONTEXT = [
       "The visitor is on the HM3D-M3 project page (https://robo-lavira.github.io/hm3d-m3/). Answer about HM3D-M3 from this brief; do not confuse it with the earlier single-agent LaViRA paper.",
-      "HM3D-M3: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation. Authors: Hongyu Ding*, Kanyu Xu*, Mingjia Chen, Zixuan Chen, Jieqi Shi\u2020, Jing Huo\u2020, Yifan Zhang\u2020, Yang Gao (Nanjing University; Nanjing Normal University; UCAS). arXiv: https://arxiv.org/abs/2610.20121 (cs.RO, 2026).",
+      "HM3D-M3: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation. Authors: Hongyu Ding*, Kanyu Xu*, Mingjia Chen, Zixuan Chen, Jieqi Shi\u2020, Jing Huo\u2020, Yifan Zhang\u2020, Yang Gao (Nanjing University; Nanjing Normal University; Institute of Automation, Chinese Academy of Sciences). arXiv: https://arxiv.org/abs/2610.20121 (cs.RO, 2026).",
       "Task: a team of K agents starts at distributed locations in a photorealistic HM3D scene and searches for an unordered set of M object goals; each goal is an open-vocabulary category (ON), an instance description (TN) or an instance image (IIN). A goal counts for the team whichever agent finds it. Metrics: goal-level SR (mean fraction of goals found) and makespan-normalized SPL, plus per-modality found rates ON / TN / IIN.",
       "Data: 1,000 validation episodes (Val-1000) over 3,926 goals from 379 categories, a 100-episode Mini-100 smoke split, and 100K observation-assignment training samples on disjoint scenes. Episodes and IIN goal images: GitHub Release v1.0.0 at https://github.com/NJU-R-L-Group-Embodied-Lab/hm3d-m3-code/releases/tag/v1.0.0 (checksummed). Training data: Hugging Face dataset https://huggingface.co/datasets/skyhyding/HM3D-M3 (gated: accept the terms and log in). HM3D v0.2 scenes are not redistributed; get them from Matterport/Habitat under their license.",
       "Code: https://github.com/NJU-R-L-Group-Embodied-Lab/hm3d-m3-code. sim-code/ is the simulation benchmark; real-world-code/ is the real-robot LaViRA-M3. Shortest path: sim-code/AGENT_SETUP.md; details in sim-code/HOW_TO_RUN.md. Steps: git clone the repo; cd sim-code; cp .env.example .env and set LLM_API_KEY (OpenAI-compatible endpoint, default DashScope qwen3.5-27b), DATA_ROOT, MODEL_ROOT; docker compose -f docker/compose.yaml --env-file .env build; docker compose -f docker/compose.yaml --env-file .env up -d m3; bash download_data.sh --data-root <DATA_ROOT>; place HM3D v0.2 val scenes under <DATA_ROOT>/scene_datasets/hm3d-1.0/hm3d_v0.2/. Inside the m3 container: bash scripts/run_selftests.sh; bash scripts/mini100/lavira.sh (smoke test); bash scripts/main_table/lavira.sh (main-table LaViRA-M3 on Val-1000). Adapted baselines: bash scripts/main_table/od_baselines.sh after the OWL sidecar and model weights (HOW_TO_RUN.md sections 4 and 7). Needs Docker with the NVIDIA runtime and a GPU; set GPUS_CSV to use several GPUs.",
@@ -167,7 +167,7 @@
             <div class="affiliations">
               <span><sup>1</sup>Nanjing University</span><br>
               <span><sup>2</sup>Nanjing Normal University</span><br>
-              <span><sup>3</sup>University of Chinese Academy of Sciences</span><br>
+              <span><sup>3</sup>Institute of Automation, Chinese Academy of Sciences</span><br>
               <span class="author-notes"><sup>*</sup>Equal Contribution, <sup>&dagger;</sup>Corresponding Author</span>
             </div>
           </div>
@@ -405,6 +405,16 @@
           <source src="./static/videos/real-world-demo2-v2.mp4" type="video/mp4"/>
         </video>
         <div class="content has-text-centered">Real-World Demo 2</div>
+        <img src="./static/images/real-world-paper.jpg" alt="Real-world deployment figure from the paper: the three robots, a three-goal run with first-person views, and the shared map growing over time" width="2600" height="964" loading="lazy" style="width:100%; margin-top:1.5rem">
+        <div class="content has-text-justified is-size-6">
+          <b>Real-world deployment (paper figure).</b> Left, the three platforms (an Agilex Cobot Magic, a Unitree Go1, and a Unitree Go2) exchanging the shared map as voxel records.
+          Center, a run with three goals (an image of a yellow suitcase, the category &ldquo;printer&rdquo;, and the description &ldquo;green chair besides the coffee bar&rdquo;) with first-person views at t<sub>0</sub> to t<sub>3</sub>, ending when each robot declares its goal found.
+          Right, the shared map growing over time, colored by robot, with regions mapped by more than one robot in pink. The video below is the full run shown in this figure.
+        </div>
+        <video controls preload="none" playsinline poster="./static/images/real-world-scene1-cover.jpg" style="width:100%">
+          <source src="./static/videos/real-world-scene1.mp4" type="video/mp4"/>
+        </video>
+        <div class="content has-text-centered">Real-World Scene 1 (the run in the paper figure)</div>
       </div>
     </div>
   </div>
