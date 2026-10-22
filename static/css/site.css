@@ -191,10 +191,20 @@ img { height: auto; }
 .pill.solid { background: var(--blue); border-color: var(--blue); color: #fff; }
 .pill.solid:hover { background: var(--blue-hover); border-color: var(--blue-hover); }
 .pill.lg { height: 40px; padding: 0 20px; font-size: 15px; }
+.nav { gap: 8px; }
+.explore .menu-ext { display: none; }
+/* Below 735px the link pills move into the Explore menu. */
+@media (max-width: 734px) {
+  .nav .hide-sm { display: none; }
+  .explore .menu-ext {
+    display: block;
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid var(--hair);
+  }
+}
 @media (max-width: 520px) {
   .nav { padding-left: 16px; gap: 6px; }
   .nav .brand { font-size: 17px; }
-  .nav .hide-sm { display: none; }
 }
 
 /* ---------- hero ---------- */
@@ -224,7 +234,7 @@ img { height: auto; }
 .affils .aff { white-space: nowrap; }
 .affils .aff + .aff::before { content: "·"; margin: 0 10px; color: var(--hair); }
 .affils .notes { display: block; margin-top: 4px; }
-@media (max-width: 734px) {
+@media (max-width: 899px) {
   .affils .aff { display: block; white-space: normal; }
   .affils .aff + .aff::before { content: none; }
 }
