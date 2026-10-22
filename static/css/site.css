@@ -420,15 +420,32 @@ table.t b { font-weight: 600; }
 .foot p { margin: 0 0 6px; }
 .foot a { color: var(--ink2); text-decoration: underline; text-underline-offset: 2px; }
 
-/* ---------- reveal on scroll ---------- */
+/* ---------- reveal on scroll ----------
+   The hidden start state only applies once JS has added .js to <html>;
+   without JS (or if site.js never runs) everything is visible. */
 .js .rv {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .9s var(--ease), transform .9s var(--ease);
+  transform: translate3d(0, 32px, 0);
+  transition:
+    opacity .7s cubic-bezier(.22, 1, .36, 1) var(--d, 0ms),
+    transform .8s cubic-bezier(.22, 1, .36, 1) var(--d, 0ms);
 }
+.js .rv:not(.in) { will-change: opacity, transform; }
 .js .rv.in { opacity: 1; transform: none; }
+
+/* Hero: no scroll wait, a short staggered load-in. */
+@keyframes hero-in {
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+.js .hero-in {
+  animation: hero-in .6s cubic-bezier(.22, 1, .36, 1) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .js .rv { opacity: 1; transform: none; transition: none; }
+  .js .rv, .js .rv.in { opacity: 1; transform: none; transition: none; will-change: auto; }
+  .js .hero-in { animation: none; }
 }
 
 /* abstract body copy: a step larger than captions */

@@ -3,17 +3,33 @@
   var root = document.documentElement;
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Reveal on scroll. Content stays visible without JS (the .js class gates the fade).
-  var items = document.querySelectorAll('.rv');
-  if ('IntersectionObserver' in window && !reduced) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    items.forEach(function (el) { io.observe(el); });
+  // Reveal on scroll. The inline <head> script adds .js (which gates the hidden
+  // start state) and removes it again if this file never sets __m3Reveal.
+  window.__m3Reveal = true;
+  var items = [].slice.call(document.querySelectorAll('.rv'));
+  function show(el) { el.classList.add('in'); }
+  if (!('IntersectionObserver' in window) || reduced) {
+    items.forEach(show);
   } else {
-    items.forEach(function (el) { el.classList.add('in'); });
+    var io = new IntersectionObserver(function (entries) {
+      // Elements that enter together are staggered in document order, 90 ms apart.
+      var batch = entries.filter(function (e) { return e.isIntersecting; })
+        .map(function (e) { return e.target; })
+        .sort(function (a, b) {
+          return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
+        });
+      batch.forEach(function (el, i) {
+        el.style.setProperty('--d', Math.min(i, 5) * 90 + 'ms');
+        show(el);
+        io.unobserve(el);
+        el.addEventListener('transitionend', function done(ev) {
+          if (ev.propertyName !== 'transform') return;
+          el.style.removeProperty('--d');
+          el.removeEventListener('transitionend', done);
+        });
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px 5% 0px' });
+    items.forEach(function (el) { io.observe(el); });
   }
 
   // Hero video: pause/play button; respect reduced motion.

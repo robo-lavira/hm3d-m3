@@ -25,7 +25,7 @@
   <link rel="icon" href="./static/images/favicon.svg">
   <!-- Bottom-right AI assistant (public embed, same as the authors' homepage; no token). -->
   <link rel="stylesheet" href="https://agent.hongyuding.site/frontend/tutor.css?v=20260726-ui12">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__m3Reveal){document.documentElement.classList.remove('js');}},2500);</script>
   <script>
     window.HOMEPAGE_AGENT_ENDPOINT = window.HOMEPAGE_AGENT_ENDPOINT || "https://agent.hongyuding.site/chat";
     window.HOMEPAGE_AGENT_HEALTH = window.HOMEPAGE_AGENT_HEALTH || "https://agent.hongyuding.site/health";
@@ -58,8 +58,8 @@
       "BibTeX: @misc{hm3dm3, title = {HM3D-M$^3$: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation}, author = {Ding, Hongyu and Xu, Kanyu and Chen, Mingjia and Chen, Zixuan and Shi, Jieqi and Huo, Jing and Zhang, Yifan and Gao, Yang}, year = {2026}, eprint = {2610.20121}, archivePrefix = {arXiv}, primaryClass = {cs.RO}, url = {https://arxiv.org/abs/2610.20121}}"
     ].join("\n");
   </script>
-  <script src="https://agent.hongyuding.site/frontend/tutor.js?v=20260726-ui12" defer></script>
   <script src="./static/js/site.js" defer></script>
+  <script src="https://agent.hongyuding.site/frontend/tutor.js?v=20260726-ui12" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -98,11 +98,11 @@
 <!-- Hero: title, authors, links, real-world mashup. -->
 <header class="hero" id="top">
   <div class="wrap">
-    <p class="eyebrow">HM3D-M&sup3;</p>
-    <h1 class="hx">A team of robots.<br> A set of goals.<br> One search.</h1>
-    <p class="title">HM3D-M&sup3;: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation</p>
+    <p class="eyebrow hero-in" style="--i:0">HM3D-M&sup3;</p>
+    <h1 class="hx hero-in" style="--i:1">A team of robots.<br> A set of goals.<br> One search.</h1>
+    <p class="title hero-in" style="--i:2">HM3D-M&sup3;: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation</p>
 
-    <p class="authors">
+    <p class="authors hero-in" style="--i:3">
       <span class="au"><a href="https://hongyuding.site" target="_blank" rel="noopener noreferrer">Hongyu Ding</a><sup>1,3,*</sup></span>,
       <span class="au"><a href="https://github.com/Li-shuangyi" target="_blank" rel="noopener noreferrer">Kanyu Xu</a><sup>1,*</sup></span>,
       <span class="au"><a href="https://mingjia2005.github.io/Mingjia-homepage/" target="_blank" rel="noopener noreferrer">Mingjia Chen</a><sup>2</sup></span>,
@@ -112,12 +112,12 @@
       <span class="au"><a href="https://people.ucas.ac.cn/~yifanzhang" target="_blank" rel="noopener noreferrer">Yifan Zhang</a><sup>3,&dagger;</sup></span>,
       <span class="au"><a href="https://cs.nju.edu.cn/gaoyang/" target="_blank" rel="noopener noreferrer">Yang Gao</a><sup>1</sup></span>
     </p>
-    <p class="affils">
+    <p class="affils hero-in" style="--i:3">
       <span class="aff"><sup>1</sup>Nanjing University</span><span class="aff"><sup>2</sup>Nanjing Normal University</span><span class="aff"><sup>3</sup>Institute of Automation, Chinese Academy of Sciences</span>
       <span class="notes"><sup>*</sup>Equal Contribution, <sup>&dagger;</sup>Corresponding Author</span>
     </p>
 
-    <div class="links">
+    <div class="links hero-in" style="--i:4">
       <!-- arXiv Link. -->
       <a class="pill lg solid" href="https://arxiv.org/abs/2610.20121" target="_blank" rel="noopener noreferrer">arXiv</a>
       <!-- PDF Link. -->
@@ -130,7 +130,7 @@
       <a class="pill lg" href="https://huggingface.co/datasets/skyhyding/HM3D-M3" target="_blank" rel="noopener noreferrer">Dataset</a>
     </div>
 
-    <div class="media hero-video rv">
+    <div class="media hero-video hero-in" style="--i:5">
       <video id="real-world-mashup" autoplay muted loop playsinline preload="auto"
              poster="./static/images/real-world-demo1-cover.jpg"
              aria-label="Real-world demos of LaViRA-M3 on three heterogeneous robots">
@@ -142,7 +142,7 @@
       </button>
     </div>
 
-    <ul class="stats rv" aria-label="Benchmark at a glance">
+    <ul class="stats hero-in" style="--i:6" aria-label="Benchmark at a glance">
       <li><span class="n">1,000</span><span class="l">validation episodes</span></li>
       <li><span class="n">3,926</span><span class="l">goals</span></li>
       <li><span class="n">379</span><span class="l">categories</span></li>
@@ -154,10 +154,10 @@
 <!-- Teaser. -->
 <section class="sec band" id="teaser">
   <div class="wrap">
-    <div class="head rv">
-      <p class="eyebrow">Teaser</p>
-      <h2 class="hl-head">Get the big picture.</h2>
-      <p class="lede">
+    <div class="head">
+      <p class="eyebrow rv">Teaser</p>
+      <h2 class="hl-head rv">Get the big picture.</h2>
+      <p class="lede rv">
         In HM3D-M&sup3;, a team of agents searches a photorealistic scene
         for an unordered set of goals given as a category, an instance image, or an instance description.
         The benchmark provides 1,000 validation episodes, 3,926 goals, 379 categories, and 100K training samples.
@@ -172,9 +172,9 @@
 <!-- Abstract. -->
 <section class="sec" id="abstract">
   <div class="wrap-copy">
-    <div class="head rv">
-      <p class="eyebrow">Abstract</p>
-      <h2 class="hl-head">Three problems. One episode.</h2>
+    <div class="head">
+      <p class="eyebrow rv">Abstract</p>
+      <h2 class="hl-head rv">Three problems. One episode.</h2>
     </div>
     <div class="copy lede-like rv">
       <p>
@@ -198,10 +198,10 @@
 <!-- Comparison with related benchmarks. -->
 <section class="sec band" id="comparison">
   <div class="wrap">
-    <div class="head rv">
-      <p class="eyebrow">Comparison with Related Benchmarks</p>
-      <h2 class="hl-head">All three, together.</h2>
-      <p class="lede">HM3D-M&sup3; is the first benchmark to place multi-agent, multi-modal, and multi-object goal navigation in one episode.</p>
+    <div class="head">
+      <p class="eyebrow rv">Comparison with Related Benchmarks</p>
+      <h2 class="hl-head rv">All three, together.</h2>
+      <p class="lede rv">HM3D-M&sup3; is the first benchmark to place multi-agent, multi-modal, and multi-object goal navigation in one episode.</p>
     </div>
     <div class="table-card rv">
       <table class="t">
@@ -232,10 +232,10 @@
 <!-- Benchmark. -->
 <section class="sec" id="benchmark">
   <div class="wrap">
-    <div class="head rv">
-      <p class="eyebrow">Multi-Agent, Multi-Modal, and Multi-Object</p>
-      <h2 class="hl-head">Take a closer look at the benchmark.</h2>
-      <p class="lede">
+    <div class="head">
+      <p class="eyebrow rv">Multi-Agent, Multi-Modal, and Multi-Object</p>
+      <h2 class="hl-head rv">Take a closer look at the benchmark.</h2>
+      <p class="lede rv">
         A team of <i>K</i> &isin; {2, 3, 4} agents shares a map and searches for <i>M</i> &isin; {3, 4, 5} unordered goals, each given as a category (ON), an instance image (IIN), or an instance description (TN); a goal is found once any agent declares it within 1&nbsp;m of the instance.
       </p>
     </div>
@@ -251,10 +251,10 @@
 <!-- Baselines. -->
 <section class="sec band" id="baselines">
   <div class="wrap">
-    <div class="head rv">
-      <p class="eyebrow">Baselines</p>
-      <h2 class="hl-head">Two baselines. Two paradigms.</h2>
-      <p class="lede">
+    <div class="head">
+      <p class="eyebrow rv">Baselines</p>
+      <h2 class="hl-head rv">Two baselines. Two paradigms.</h2>
+      <p class="lede rv">
         Two baselines, two paradigms: <b>HiGA</b> (<b>trained</b>) assigns goals to agents with a transformer over agent, goal, and map tokens, on top of a frozen open-vocabulary policy; <b>LaViRA-M&sup3;</b> (<b>training-free</b>) runs a team of language–vision–robot VLM agents that share a top-down map, a goal board, and progress analysis.
       </p>
     </div>
@@ -278,10 +278,10 @@
 <!-- Results. -->
 <section class="sec" id="results">
   <div class="wrap-mid">
-    <div class="head rv">
-      <p class="eyebrow">Results</p>
-      <h2 class="hl-head">See how the teams compare.</h2>
-      <p class="lede">Validation split, 1,000 episodes. ON / TN / IIN are per-modality goal found rates.</p>
+    <div class="head">
+      <p class="eyebrow rv">Results</p>
+      <h2 class="hl-head rv">See how the teams compare.</h2>
+      <p class="lede rv">Validation split, 1,000 episodes. ON / TN / IIN are per-modality goal found rates.</p>
     </div>
     <div class="highlights">
       <div class="hcard rv"><div class="n">41.0<small>%</small></div><div class="l"><b>LaViRA-M&sup3;</b> SR, the highest in the table</div></div>
@@ -313,10 +313,10 @@
 <!-- Qualitative and failure analysis. -->
 <section class="sec band" id="qualitative">
   <div class="wrap">
-    <div class="head rv">
-      <p class="eyebrow">Qualitative and Failure Analysis</p>
-      <h2 class="hl-head">Where missed goals go.</h2>
-      <p class="lede">
+    <div class="head">
+      <p class="eyebrow rv">Qualitative and Failure Analysis</p>
+      <h2 class="hl-head rv">Where missed goals go.</h2>
+      <p class="lede rv">
         <b>Failure attribution</b>: LaViRA-M&sup3; misses 59.0% of goals, mostly at claim time (41.8% pose miss); HiGA misses 62.1%, mostly in perception (25.7% failed approach, 16.4% undetected nearby).
         The two failure profiles are complementary.
       </p>
@@ -333,9 +333,9 @@
 <!-- Real-world deployment: paper figure, description, Demo 1 (scene 1), Demo 2, Demo 3. -->
 <section class="sec" id="real-world">
   <div class="wrap">
-    <div class="head rv">
-      <p class="eyebrow">Real-World Deployment</p>
-      <h2 class="hl-head">Three robots. One office.</h2>
+    <div class="head">
+      <p class="eyebrow rv">Real-World Deployment</p>
+      <h2 class="hl-head rv">Three robots. One office.</h2>
     </div>
     <div class="media pad rv">
       <img src="./static/images/real-world-paper.jpg" alt="Real-world deployment: the three robots, a three-goal run with first-person views, and the shared map growing over time" width="2600" height="964" loading="lazy">
@@ -379,9 +379,9 @@
 <!-- BibTeX. -->
 <section class="sec band" id="BibTeX">
   <div class="wrap-mid">
-    <div class="head rv">
-      <p class="eyebrow">BibTeX</p>
-      <h2 class="hl-head">Cite HM3D-M&sup3;.</h2>
+    <div class="head">
+      <p class="eyebrow rv">BibTeX</p>
+      <h2 class="hl-head rv">Cite HM3D-M&sup3;.</h2>
     </div>
     <div class="cite-meta rv">
       <p class="ptitle">HM3D-M&sup3;: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation</p>
